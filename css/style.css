@@ -1,0 +1,127 @@
+body{
+	font-size: 16px;
+}
+a{ color: #1d315f !important; }
+p{ padding-top: 10px; padding-bottom: 10px; color: #999999; }
+.empty-space{ padding: 40px 0px; }
+.empty-space-top{ padding-top: 20px; }
+.empty-space-bottom{ padding-bottom: 20px; }
+.mt-5 { margin-top: 50px; }
+
+h2{ color: #1d315f; }
+.hash-tag{ color: #1d315f; font-weight: 600; }
+
+.btn{
+	padding: 8px 24px;
+}
+.btn-default {
+    color: #fff;
+    background-color: #1d315f;
+    border-color: #1d315f;
+}
+
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/*page-content*/
+.section{
+	padding: 40px 0px;
+}
+
+input{
+	border: 1px solid;
+	padding: 10px 10px;
+	color: #525252;
+    margin-left:15px;
+}
+input[type=submit]{
+	border: 0px;
+	padding: 10px 35px;
+	margin-left: -3px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #1d315f;
+}
+
+
+/*spin wheel*/
+.left-wheel, .right-text {
+    flex-basis: 50%;
+}
+.wrapper {
+  width: 90%;
+  max-width: 34.37em;
+  /*max-height: 90vh;*/
+  background-color: #ffffff;
+  /*position: absolute;*/
+  /*transform: translate(-50%, -50%);*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  padding: 3em;
+  border-radius: 1em;
+  box-shadow: 0 4em 5em rgba(27, 8, 53, 0.2);
+}
+.inner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#wheel {
+  /*max-height: inherit;*/
+  /*width: inherit;*/
+  top: 0;
+  padding: 0;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#spin-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 26%;
+  width: 26%;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0;
+  background: radial-gradient(#fdcf3b 50%, #d88a40 85%);
+  color: #c66e16;
+  text-transform: uppercase;
+  font-size: 1.8em;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.spinner-arrow {
+  position: absolute;
+  width: 4em;
+  top: 45%;
+  right: -8%;
+}
+#final-value {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 1.5em;
+  color: #202020;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .d-flex-center {
+        flex-direction: column;
+    }
+    .wrapper {
+        font-size: 12px;
+    }
+    .spinner-arrow {
+        right: -5%;
+    }
+    .left-wheel, .right-text {
+        flex-basis: 100%;
+    }
+}

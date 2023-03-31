@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Spin Wheel</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+		<div id="page-content">
+		  <div class="section">
+				<div class="container pre-section">
+					<div class="row d-flex-center">
+						<div class="wrapper left-wheel">
+							<div class="inner-wrapper">
+								<canvas id="wheel"></canvas>
+								<button id="spin-btn">Spin</button>
+								<img src="imgs/spinner-arrow-.svg" alt="spinner-arrow" class="spinner-arrow" />
+							</div>
+							<div id="final-value">
+								<p>Click On The Spin Button To Start</p>
+
+							</div>
+						</div>
+                        
+				    <div class="right-text text-center">
+				        <h1>SPIN WHEEL</h1>
+				        <h2>To Grab Exciting Offers...</h2>
+				        <button type="button" id="formModalBtn" class="btn btn-primary btn-lg mt-5" data-toggle="modal" data-target="#formModal">Let's Spin</button>
+				    </div>
+					</div>
+				</div>
+				
+				<!--Modal Form-->
+				<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<h1 class="text-center">Welcome!</h1>
+								<h3 class="text-center empty-space-bottom">Enter your details to get started</h3>
+								<form id="social-form" name="social-form" method="POST" action="action-form.php">
+									<input type="text" id="name" name="name" class="clearFields" placeholder="Name" required="required" autofocus style="width:80%; margin: 0px auto;display: block;">
+									<div class="empty-space-top"></div>
+									<input type="email" id="email" name="email" class="clearFields" placeholder="Email ID" required="required" style="width:80%; margin: 0px auto;display: block;">
+									<div class="empty-space-top"></div>
+									<input type="text" id="mobile" name="mobile" class="clearFields" placeholder="Mobile Number" required="required" style="width:80%; margin: 0px auto;display: block;">
+									<div class="empty-space-top"></div>
+									<center><input type="button" name="submit" value="Submit" class="btn-submit"></center>
+
+									<div id="msg" class="pt-2 text-center"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/ajquery-3.2.0.min.js"></script>
+		
+		<script>
+    		jQuery(function($) {
+    		  localStorage.clear();
+    		    
+    			$(".btn-submit").click(function(){
+    				var name = $("#name").val();
+    				var email_id = $("#email").val();
+    				var mobile = $("#mobile").val();
+    				if(name == "" || email_id == "" || mobile == "") {
+    					$("#msg").delay(500).show().html("<p class='text-danger'> All Fields are Required</p>");
+    				}
+    				else {
+    					$("#msg").hide().html("");
+    					
+    					$data = $("#social-form").serialize();
+    					$.ajax({
+    						url: "action-form.php",
+    						type: "POST",
+    						data: $data,
+    						
+    						// before ajax request
+        				beforeSend: function() {
+        					$("#msg").delay(500).fadeIn("slow").html("<p class='text-success'> Please wait.. </p>");
+        				},
+            				
+            		// on success response
+    						success: function(response) {
+    				      // console.log(response);
+    							$("#msg").delay(500).fadeIn("slow").html(response);
+    							
+    							// reset form fields after submit
+				          $("#social-form")[0].reset();
+    						},
+    						
+    						// error response
+        				error:function(response) {
+        					$("#msg").delay(500).fadeIn("slow").html(response);
+        				}
+    					});
+    				}
+    				
+    				$('#formModalBtn, #spin-btn').click(function() {
+    				  $('#msg').html('');
+    				})
+    			});
+    		});
+    	</script>
+    	
+    	<!-- Chart JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+        <!-- Chart JS Plugin for displaying text over chart -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+        <!-- Script -->
+        <script src="js/script.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</body>
+</html>
